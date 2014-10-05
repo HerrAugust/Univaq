@@ -24,7 +24,10 @@ int myPotenza(int base, int esponente) {
 
 	int risultato = 0;
 	for(int i = 1; i <= esponente; i++) { //notare <=. Prova a lanciare il codice per capire! ;) Parentesi {} non necessarie!
-		risultato = base * base;
+		if(risultato = 0)
+		  risultato = base * base;
+		else
+		  risultato *= base;
 	}
 
 	return risultato;
