@@ -1,5 +1,5 @@
 //============================================================================
-// Name : Consegna1-cicliforewhile.cpp
+// Name : Consegna1-array.cpp
 // Author : Agostino Mascitti
 // Email : agostino_aless@yahoo.it
 // Version :
