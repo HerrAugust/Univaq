@@ -26,9 +26,9 @@ int main() {
   
   for(int i = 0; i < 20; i++) {
     if(i % 2 == 0) //% restituisce il modulo, cioè il resto della divisione. In questo caso mi chiedo se i è pari
-      cout << num[i] * moltiplicato[0];
+      cout << num[i] * moltiplicato[0] << endl;
     else
-      cout << num[i] * moltiplicato[1];
+      cout << num[i] * moltiplicato[1] << endl;
   }
   
   return 0;
