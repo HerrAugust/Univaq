@@ -1,4 +1,13 @@
-//Inventa 3 numeri e stampali per ciò che chiede l’utente
+//============================================================================
+// Name        : Consegna2-videoarray.cpp
+// Author      : Agostino Mascitti
+// Version     :
+// Copyright   : Your copyright notice
+// Description : Hello World in C++, Ansi-style
+// Consegna    : Inventa 3 numeri e stampali per ciò che chiede l’utente
+// Questo codice stampa "Linea eseguita" tante volte quanto l'utente digita in console finchè non scrive "0".
+
+//============================================================================
 
 #include <iostream>
 using namespace std;
