@@ -29,7 +29,7 @@ cout << minimo << endl;
 
 int main(void) {
  int minimo = num[0];
- varScorrArray = 0;
+ int varScorrArray = 0;
  minimo = metRic(varScorrArray, minimo);
  cout << minimo << endl;
  //funzIter(); Avrai lo stesso output
