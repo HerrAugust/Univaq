@@ -1,3 +1,6 @@
+#include <iostream>
+using namespace std;
+
 void versioneIterativa() {
 int numeri[18];
 //Nota: questo ciclo non va trasformato in ricorsivo per consegna
