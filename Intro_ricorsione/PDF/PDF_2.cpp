@@ -31,5 +31,6 @@ int main(void) {
  varScorrArray = 0;
  metRic(varScorrArray, minimo);
  cout << minimo << endl;
+ //funzIter() Avrai lo stesso output
  return 0;
 }
