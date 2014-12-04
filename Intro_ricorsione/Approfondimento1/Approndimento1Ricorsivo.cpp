@@ -4,7 +4,7 @@ using namespace std;
 int numeri[18];
 
 void versioneRicorsiva(int varScorr, int maggiore, int minore) {
-	if(varScorr == 5) {
+	if(varScorr == 18) {
 		cout << "il maggiore è " << maggiore << endl;
 		return;
 	}
