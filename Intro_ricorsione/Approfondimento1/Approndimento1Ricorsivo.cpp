@@ -1,6 +1,8 @@
 #include <iostream>
 using namespace std;
 
+int numeri[18];
+
 void versioneRicorsiva(int varScorr, int maggiore, int minore) {
 	if(varScorr == 5) {
 		cout << "il maggiore è " << maggiore << endl;
@@ -15,11 +17,8 @@ void versioneRicorsiva(int varScorr, int maggiore, int minore) {
 }
 
 int main(void) {
-
-	versioneIterativa();
-
 	//Nota: questo ciclo non va trasformato in ricorsivo per consegna
-	for(int i = 0; i < 5; i++) {
+	for(int i = 0; i < 18; i++) {
 		cout << "Inserisci un numero intero: " << endl;
 		cin >> numeri[i];
 	}
