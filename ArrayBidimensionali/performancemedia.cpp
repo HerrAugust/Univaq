@@ -31,7 +31,7 @@ int main(void) {
 	{1, 2, 3, 10, 5, 6, 7},
 	{6, 4, 10, 0, 1, 4, 8}
 	};
-	double somma[ncalciatori] = { 0.0, 0.0, 0.0 };
+	double somma[3] = { 0.0, 0.0, 0.0 };
 
 	//sommo le performance
 	int i, j;
