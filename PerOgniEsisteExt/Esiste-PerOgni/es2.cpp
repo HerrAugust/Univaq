@@ -1,6 +1,6 @@
 /*
  * Consegna: dato un array bidimensionale mxm dire se esiste una diagonale del sottoarray
- * bidimensionale di dimensiona nxn (per n che va da 1 a m-1) la somma dei cui elementi è
+ * bidimensionale di dimensione nxn (per n che va da 0 a m-1) la somma dei cui elementi è
  * maggiore di quella degli elementi delle altre diagonali.
  * ALG: calcolare ogni volta la somma delle sottodiagonali è molto costoso (te ne accorgi
  * con le matrici molto molto grandi). Quindi l'idea, semplicissima, è memorizzare le
@@ -14,38 +14,41 @@ using namespace std;
 int main(void) {
 	int m = 5;
 	int array[5][5] = {
-			{ 20, 12, 3,  4,  6 },
+			{ 20, 12, 3,  4,  0 },
 			{ 2,  2,  2,  2,  2 },
 			{ 10, 20, 20, 30, 40 },
 			{ 6,  1,  0,  0,  100 },
 			{ 5,  4,  3,  2,  90 }
 	};
 
-	int somme[5];
-	for(int n = m; n >= 0; n--) {
+	//trova la somma degli elementi sulle varie diagonali
+	int somme[m];
+	for(int n = 0; n < m; n++) { //allargo l'area del sottoarray bidimensionale nxn
 		somme[n] = 0;
-		for(int col = n; col >= 0; col--) { //TODO errore
-			somme[n] += array[col][col];
+		for(int r = 0, c = n; r <= n; r++, c--) { //vado avanti con le righe e indietro con le colonne
+			somme[n] += array[r][c];
 		}
-		cout << "somme["<< n << "] = " << somme[n] << endl;
+		cout << "Somma sottoarray " << n+1 << "x" << n+1 << " = " << somme[n] << endl;
 	}
 
-	int posMaggiore = -1, i;
-	for(i = 0; i < m; i++) { //scorro somme[]
-		posMaggiore = i;
-		for(int j = 0; j < m; j++) { //scorro da capo somme[]
-			//se una diagonale è maggiore non devo continuare
-			if(somme[i] < somme[j]) {
-				j = m;
+	//adesso uso somme[] per verificare la consegna
+	int posMaggiore = -1;
+	for(int s1 = 0; s1 < m; s1++) {
+		posMaggiore = s1;
+		for(int s2 = 0; s2 < m; s2++) {
+			if(somme[s1] < somme[s2]) {
+				posMaggiore = -1;
+				//non ha più senso controllare anche le altre diagonali
+				s2 = m;
 			}
-
-			if(j+1 == m)
-				i = m;
+			if(s2 == m-1) {
+				s1 = m;
+			}
 		}
 	}
 
-	if(posMaggiore != m)
-		cout << "Esiste una diagonale maggiore in posizione: " << posMaggiore;
+	if(posMaggiore != -1)
+		cout << "Esiste una diagonale maggiore in posizione: " << posMaggiore << " ed e' " << somme[posMaggiore];
 	else
 		cout << "Non esiste cio' che cerchi";
 
