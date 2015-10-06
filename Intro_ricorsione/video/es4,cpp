@@ -1,0 +1,84 @@
+ /* Esercizio numero 4 (ricorsione), Java 1.8 Consegna: scrivere un metodo ricorsivo a partire da uno iterativo che,
+ dato un array bidimensionale di stringhe a e un array di interi b, restituisca un array bidimensionale di stringhe r
+ tale che r[i] è uguale alla concatenazione di a[i] e b[i]. Se il primo elemento di b è pari, tuttavia, sollevare un
+ eccezione personalizzata; se il primo e il quinto elemento di b[0] sono 3, restituire un array di stringhe vuoto.
+ Per esempio, per a={{“Cocco”,”cane”, ”because”}, {“bello”}} e b={{1, 2, 3, 5},{9, 9, 0}, {111, 10}},
+ r={{“cocco1″,”cane2″,”because3″,”5”}, {“bello9″,”9″,”0”}, {“111″,”10”}}. */
+
+#include <string>
+#include <iostream>
+
+using namespace std;
+
+int arow = 2, acol = 3;
+string a[2][3] = {
+  { "Cocco", "cane", "because" },
+  { "bello", "", "" }
+};
+
+int brow = 3, bcol = 4;
+int b[3][4] = {
+	{1, 2, 3, 5},
+	{9, 9, 0, -1},
+	{111, 10, -1, -1}
+};
+
+void versioneIterativa() {
+	//creo r
+	int row = 0;
+	if(arow >= brow)
+		row = arow;
+	else
+		row = brow;
+
+	int cols = 0;
+	if(acol >= bcol)
+		cols = acol;
+	else
+		cols = bcol;
+	string r[row][cols];
+
+	//supponiamo per semplicità (l'esercizio è sulla trasformazione iterativo -> ricorsivo) che b.length >= a.length
+	for(int i = 0; i < brow; i++) {
+		if(i < arow && acol >= bcol) {
+			for(int j = 0; j < acol; j++) {
+				r[i][j] = "";
+				r[i][j] = a[i][j];
+				if(j < bcol)
+					r[i][j] += b[i][j];
+			}
+		}
+		else {
+			for(int j = 0; j < bcol; j++) {
+				r[i][j] = "";
+				if(i < arow &&j < acol)
+					r[i][j].append(a[i][j]);
+				if(b[i][j] != -1)
+					r[i][j].append(to_string(b[i][j]));
+			}
+		}
+	}
+
+	//stampo r
+	for(int i = 0; i < row; i++) {
+		cout << endl;
+		for(int j = 0; j < cols; j++)
+			cout << r[i][j] << " ";
+	}
+}
+
+int main() {
+
+	//Nota: evito di scrivere il codice per richiedere i due array. In ogni caso da tale codice si hanno in input anche
+	//il numero di righe e colonne dell'uno e dell'altro array.
+	//Inoltre, uno dei problemi di questa consegna è recuperare quanti elementi ci sono in una certa riga degli array. Per risolvere
+	//ciò ho pensato di mettere dei valori di default quando l'utente smette di inserirne di propri, come si vede negli
+	//array di cui sopra. Ciò è crea un nuovo problema con b poichè assumo che -1 sia il valore di terminazione riga (se l'utente
+	//inserisce -1 allora c'è lo skip alla riga successiva; in altre parola l'utente non può inserire -1, ma dovrebbbe potere).
+	//Come risolvere questo problema? Convertendo b in un array di stringhe a runtime e comportandosi come per a.
+	versioneIterativa();
+
+  //versioneRicorsiva(); a voi! =)
+
+	return 0;
+}
