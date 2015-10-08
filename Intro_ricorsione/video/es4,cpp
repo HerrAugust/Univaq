@@ -1,4 +1,6 @@
- /* Esercizio numero 4 (ricorsione), Java 1.8 Consegna: scrivere un metodo ricorsivo a partire da uno iterativo che,
+//Testato con il solo input che segue il metodo versioneIterativa(); versioneRicorsiva() non testata e contiene un errore.
+
+/* Esercizio numero 4 (ricorsione), Java 1.8 Consegna: scrivere un metodo ricorsivo a partire da uno iterativo che,
  dato un array bidimensionale di stringhe a e un array di interi b, restituisca un array bidimensionale di stringhe r
  tale che r[i] è uguale alla concatenazione di a[i] e b[i]. Se il primo elemento di b è pari, tuttavia, sollevare un
  eccezione personalizzata; se il primo e il quinto elemento di b[0] sono 3, restituire un array di stringhe vuoto.
@@ -71,7 +73,7 @@ void versioneIterativa() {
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //versione ricorsiva
 
-void aux_forinterno_else(string *r, int i, int j) {
+template<int N, int M> void aux_forinterno_else(string (&r)[N][M], int i, int j) {
 	if(j == bcol)
 		return;
 	r[i][j] = "";
@@ -82,7 +84,7 @@ void aux_forinterno_else(string *r, int i, int j) {
 	aux_forinterno_else(r,i,j+1);
 }
 
-void aux_forinterno_if(string* r, int i, int j) {
+template<int N, int M> void aux_forinterno_if(string (&r)[N][M], int i, int j) {
 	if(j == acol)
 		return;
 	r[i][j] = "";
@@ -93,7 +95,7 @@ void aux_forinterno_if(string* r, int i, int j) {
 }
 
 //sostituto per il for esterno (vedi metodo iterativo)
-void aux_main(string* r, int i) {
+template<int N, int M> void aux_main(string (&r)[N][M], int i) {
 	if(i == brow)
 		return;
 	if(i < arow && acol >= bcol)
@@ -105,13 +107,12 @@ void aux_main(string* r, int i) {
 
 void versioneRicorsiva() {
 	//creo r
-	int row = 0;
+	int row = 0, cols = 0;
 	if(arow >= brow)
 		row = arow;
 	else
 		row = brow;
 
-	int cols = 0;
 	if(acol >= bcol)
 		cols = acol;
 	else
@@ -119,19 +120,20 @@ void versioneRicorsiva() {
 	string r[row][cols];
 
 	//sostituto per il for esterno
-	aux_main(r,0);
+	aux_main(r,0); //errore
 
 	//stampo r
 	for(int i = 0; i < row; i++) {
 		cout << endl;
 		for(int j = 0; j < cols; j++)
 			cout << r[i][j] << " ";
+	}
 }
 
-//fine versione ricorsiva 
+//fine versione ricorsiva
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-int main() {
+int main(int argc, char* argv[]) {
 
 	//Nota: evito di scrivere il codice per richiedere i due array. In ogni caso da tale codice si hanno in input anche
 	//il numero di righe e colonne dell'uno e dell'altro array.
@@ -140,9 +142,9 @@ int main() {
 	//array di cui sopra. Ciò è crea un nuovo problema con b poichè assumo che -1 sia il valore di terminazione riga (se l'utente
 	//inserisce -1 allora c'è lo skip alla riga successiva; in altre parola l'utente non può inserire -1, ma dovrebbbe potere).
 	//Come risolvere questo problema? Convertendo b in un array di stringhe a runtime e comportandosi come per a.
-	versioneIterativa();
+	//versioneIterativa();
 
-  //versioneRicorsiva(); a voi! =)
+	versioneRicorsiva();
 
 	return 0;
 }
