@@ -67,6 +67,70 @@ void versioneIterativa() {
 	}
 }
 
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//versione ricorsiva
+
+void aux_forinterno_else(string *r, int i, int j) {
+	if(j == bcol)
+		return;
+	r[i][j] = "";
+	if(i < arow &&j < acol)
+		r[i][j].append(a[i][j]);
+	if(b[i][j] != -1)
+		r[i][j].append(to_string(b[i][j]));
+	aux_forinterno_else(r,i,j+1);
+}
+
+void aux_forinterno_if(string* r, int i, int j) {
+	if(j == acol)
+		return;
+	r[i][j] = "";
+	r[i][j] = a[i][j];
+	if(j < bcol)
+		r[i][j] += b[i][j];
+	aux_forinterno_if(r,i,j+1);
+}
+
+//sostituto per il for esterno (vedi metodo iterativo)
+void aux_main(string* r, int i) {
+	if(i == brow)
+		return;
+	if(i < arow && acol >= bcol)
+		aux_forinterno_if(r,i,0);
+	else
+		aux_forinterno_else(r,i,0);
+	aux_main(r, i+1);
+}
+
+void versioneRicorsiva() {
+	//creo r
+	int row = 0;
+	if(arow >= brow)
+		row = arow;
+	else
+		row = brow;
+
+	int cols = 0;
+	if(acol >= bcol)
+		cols = acol;
+	else
+		cols = bcol;
+	string r[row][cols];
+
+	//sostituto per il for esterno
+	aux_main(r,0);
+
+	//stampo r
+	for(int i = 0; i < row; i++) {
+		cout << endl;
+		for(int j = 0; j < cols; j++)
+			cout << r[i][j] << " ";
+}
+
+//fine versione ricorsiva 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 int main() {
 
 	//Nota: evito di scrivere il codice per richiedere i due array. In ogni caso da tale codice si hanno in input anche
