@@ -1,6 +1,6 @@
 //============================================================================
 // Name        : prove.cpp
-// Author      : Agostino Mascitti
+// Author      : github.com/HerrAugust
 // Version     :
 // Copyright   : Your copyright notice
 // Description : Hello World in C++, Ansi-style
